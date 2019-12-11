@@ -16,3 +16,7 @@
 // });
 
 Route::get('/', 'MainController@index');
+Route::get('/create_ticket', 'TicketController@show');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

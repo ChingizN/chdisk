@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('main');
+        if (Auth::check()) {
+            return view('main');
+        } else {
+            return redirect('/login');
+        }
     }
 }
+
+
+

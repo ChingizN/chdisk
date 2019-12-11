@@ -19,7 +19,7 @@ class CreateTicketsTable extends Migration
             $table->text('department');
             $table->text('theme');
             $table->text('description');
-            $table->boolean('status');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
