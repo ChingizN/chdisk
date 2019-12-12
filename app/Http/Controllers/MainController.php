@@ -10,7 +10,9 @@ class MainController extends Controller
     public function index(Request $request)
     {
         if (Auth::check()) {
-            return view('main');
+            $tickets = \App\Ticket::all();
+            $messages = \App\Message::all();
+            return view('main', ['tickets' => $tickets, 'messages' => $messages]);
         } else {
             return redirect('/login');
         }

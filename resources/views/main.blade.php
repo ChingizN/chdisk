@@ -64,11 +64,11 @@
     <div class="list-group pull-xs-right">
       <div class="form-group">
         <label for="sel1">Выберите отдел:</label>
-        <select class="form-control-xs" id="sel1">
-          <option>IT</option>
-          <option>Finance</option>
-          <option>Sales</option>
-          <option>All</option>
+        <select class="form-control-xs" id="sel1" onchange="location=value">
+          <option value="/create_ticket">All</option>
+          <option value="/create_ticket">Finance</option>
+          <option value="/create_ticket">Sales</option>
+          <option value="/create_ticket">IT</option>
         </select>
       </div>
       
@@ -79,24 +79,37 @@
       </form>
     </div>
 
+    @foreach($tickets as $ticket)
+
       <br><br><br><br>
     <div class="jumbotron">
-      <a class="-sm-4">Ticket # 777</a>
-      <a class="col-sm-1">Author</a>
-      <a class="col-sm-1 pull-xs-right">timestamp</a>
-      <a class="pull-xs-right">Department</a><hr>
-      <p>This example is a quick exercise to illustrate how the default responsive navbar works. It's placed within a <code>.container</code> to limit its width and will scroll with the rest of the page's content.</p><hr>
-      <a class="-sm-4">Последний ответ</a>
+      <a class="-sm-4">Ticket # {{$ticket->id}}</a>
+      <a class="col-sm-1">{{$ticket->author}}</a>
+      <a class="col-sm-2   pull-xs-right">{{$ticket->created_at}}</a>
+      <a class="pull-xs-right">Отдел: {{$ticket->department}}</a><hr>
+      <p class=font-weight-bold><h3><strong>{{$ticket->theme}}</strong></h3></p>
+      <p>{{$ticket->description}}</p><hr>
+      <a class="-sm-4"><strong>Последний ответ</strong></a>
+
+      @foreach($messages as $message)
+
+      @if ($message->ticket_id == $ticket->id AND $message->author == $ticket->author)
+
       <div class="jumbotron jumbotron bg-warning">
-        <a class="-sm-4">Ticket # 777</a>
-        <a class="col-sm-1">Author</a>
-        <a class="col-sm-1 pull-xs-right">timestamp</a>
-        <a class="pull-xs-right">Department</a><hr>
-        <p>At the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to toggle the collapsed content.LoremAt the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to toggle the collapsed content.LoremAt the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to toggle the collapsed content.LoremAt the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to toggle the collapsed content.LoremAt the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to toggle the collapsed content.LoremAt the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to toggle the collapsed content.LoremAt the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to toggle the collapsed content.Lorem</p><hr>
+        <a class="col-sm-1">{{$message->author}}</a>
+        <a class="col-sm-2 pull-xs-right">{{$message->created_at}}</a><hr>
+        <p>{{$message->message}}</p><hr>
       </div>
+
+      @endif
+
+      @endforeach
+
       <p>
         <a class="btn btn-primary pull-xs-right" href="#" role="button">Закрыть тикет &raquo;</a>
       </p>
     </div>
+
+    @endforeach
   </body>
 </html>
