@@ -68,11 +68,10 @@
       <input type="hidden" name="author" value="{{ Auth::user()->name }}">
       <a class="form-group pull-xs-right">
         <label for="sel1">Выберите отдел:</label>
-        <select class="form-control-xs" id="sel1" name="department" onchange="value=value">
-          <option>Выберите отдел</option>
-          <option value="Finance">Finance</option>
-          <option value="Sales">Sales</option>
-          <option value="IT">IT</option>
+        <select class="form-control-xs" id="sel1" name="department_id" onchange="value=value">
+          <option value="1">IT отдел</option>
+          <option value="2">Отдел продаж</option>
+          <option value="3">Финансовый отдел</option>
         </select>
       </a><hr>
       <p class="head"><h4><strong>Заголовок</strong></h4></p>

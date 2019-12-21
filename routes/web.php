@@ -16,13 +16,13 @@
 // });
 
 Route::get('/', 'MainController@index');
-Route::get('/create_ticket', 'TicketController@show');
+Route::get('/create_ticket', 'TicketController@createTicket');
 Route::post('/ticket/add/', 'TicketController@addTicket');
+Route::get('/ticket/{id}', 'TicketController@showTicket');
+Route::post('/message/send/{id}', 'MessageController@sendMessage');
+Route::get('/ticket/status-change/{id}', 'TicketController@ticketStatus');
 
-Route::get('/all_tickets', 'TicketController@show');
-Route::get('/finance_tickets', 'TicketController@show');
-Route::get('/sales_tickets', 'TicketController@show');
-Route::get('/it_tickets', 'TicketController@show');
+Route::get('/tickets/filter', 'MainController@ticketFilter');
 
 
 
