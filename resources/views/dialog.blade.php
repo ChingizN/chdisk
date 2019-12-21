@@ -30,30 +30,28 @@
     }
 </style>
 <body>
-    <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-        <a class="navbar-brand" href="/">Главная</a>
-        <a class="navbar-brand" href="/create_ticket">Создать тикет</a>
-        
-        <ul class="navbar-brand pull-xs-right">
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link navbar-brand" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
+  <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+    <a class="navbar-brand" href="/">Главная</a>
+    @if (Auth::user()->permission == 'user')
+      <a class="navbar-brand" href="/create_ticket">Создать тикет</a>
+    @endif
+    <a id="navbarDropdown" class="nav-link navbar-brand pull-xs-right" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        {{ Auth::user()->name }} <span class="caret"></span>
+    </a>
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                        {{ __('Выход') }}
-                    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+            {{ __('Выход') }}
+        </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </div>
-            </li>
-        </ul>
-    </nav>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    </div>
+
+  </nav>
 
     <div class="container center">
       <div class="starter-template"><br><br><br><br>
@@ -65,7 +63,7 @@
       <a class="-sm-4">Ticket # {{$ticket->id}}</a>
       <a class="col-sm-1">{{$ticket->author}}</a>
       <a class="col-sm-2   pull-xs-right">{{$ticket->created_at}}</a>
-      <a class="pull-xs-right">Отдел: {{$ticket->department}}</a><hr>
+      <a class="pull-xs-right">Отдел: {{$ticket->department->name}}</a><hr>
       <p class=font-weight-bold><h3><strong>{{$ticket->theme}}</strong></h3></p>
       <p>{{$ticket->description}}</p><hr>
     </div>
