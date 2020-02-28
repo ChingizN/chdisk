@@ -33,20 +33,17 @@
     <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
         <a class="navbar-brand" href="/">Главная</a>
         <a class="navbar-brand" href="/create_ticket">Создать тикет</a>
-        
         <ul class="navbar-brand pull-xs-right">
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link navbar-brand" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
-
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                         {{ __('Выход') }}
                     </a>
-
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -54,38 +51,34 @@
             </li>
         </ul>
     </nav>
-
     <div class="container center">
-      <div class="starter-template"><br><br><br><br>
-        <h1>Создание нового тикета</h1>
-      </div>
+        <div class="starter-template"><br><br><br><br>
+            <h1>Создание нового тикета</h1>
+        </div>
     </div>
-
     <form action="/ticket/add/" method="post">
-    @csrf
-    <div class="jumbotron">
-      <a class="col-sm-1">{{ Auth::user()->name }}</a>
-      <input type="hidden" name="author" value="{{ Auth::user()->name }}">
-      <a class="form-group pull-xs-right">
-        <label for="sel1">Выберите отдел:</label>
-        <select class="form-control-xs" id="sel1" name="department_id" onchange="value=value">
-          <option value="1">IT отдел</option>
-          <option value="2">Отдел продаж</option>
-          <option value="3">Финансовый отдел</option>
-        </select>
-      </a><hr>
-      <p class="head"><h4><strong>Заголовок</strong></h4></p>
-      <a class="row"><input type="text" name="theme" style="width:100%;"></a><br>
-      <p class="head"><h5><strong>Описание</strong></h5></p>
-      <a><textarea name="description" rows="5" style="width:100%;"></textarea></a><hr>
-      
-      <p>
-            <a>
-                <button class="btn btn-primary pull-xs-right" type="submit">Создать тикет</button>
-            </a>
-      </p>
-    </div>
+        @csrf
+        <div class="jumbotron">
+            <a class="col-sm-1">{{ Auth::user()->name }}</a>
+            <input type="hidden" name="author" value="{{ Auth::user()->name }}">
+            <a class="form-group pull-xs-right">
+                <label for="sel1">Выберите отдел:</label>
+                <select class="form-control-xs" id="sel1" name="department_id" onchange="value=value">
+                <option value="1">IT отдел</option>
+                <option value="2">Отдел продаж</option>
+                <option value="3">Финансовый отдел</option>
+                </select>
+            </a><hr>
+            <p class="head"><h4><strong>Заголовок</strong></h4></p>
+            <a class="row"><input type="text" name="theme" style="width:100%;"></a><br>
+            <p class="head"><h5><strong>Описание</strong></h5></p>
+            <a><textarea name="description" rows="5" style="width:100%;"></textarea></a><hr>
+            <p>
+                <a>
+                    <button class="btn btn-primary pull-xs-right" type="submit">Создать тикет</button>
+                </a>
+            </p>
+        </div>
     </form>
-
 </body>
 </html>
